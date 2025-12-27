@@ -13,10 +13,6 @@ This project is designed with **Separation of Concerns**. The core mathematical 
 - **Miller-Rabin Primality Test:** Implements probabilistic testing to find large 1024-bit primes.
 - **Modular Inverse:** Calculates the private exponent $d$ using the Extended Euclidean Algorithm.
 
-## 📦 Installation & Setup
-To clone this project along with its dependencies:
-```bash
-git clone --recursive [https://github.com/Thomas170491/RSA-Key-Gen.git](https://github.com/Thomas170491/RSA-Key-Gen.git)
 
 ## 🧮 Mathematical Background
 
@@ -50,3 +46,8 @@ RSA uses modular exponentiation to transform data.
 ### 3. Proof of Correctness
 The decryption works because of **Euler's Theorem**. Since $d$ is the modular inverse of $e \pmod{\phi(n)}$, we know that $ed = 1 + k\phi(n)$ for some integer $k$. Therefore:
 $$C^d \equiv (M^e)^d \equiv M^{ed} \equiv M^{1 + k\phi(n)} \equiv M \cdot (M^{\phi(n)})^k \equiv M \cdot 1^k \equiv M \pmod{n}$$
+
+## 📦 Installation & Setup
+To clone this project along with its dependencies:
+```bash
+git clone --recursive [https://github.com/Thomas170491/RSA-Key-Gen.git](https://github.com/Thomas170491/RSA-Key-Gen.git)
