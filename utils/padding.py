@@ -42,4 +42,4 @@ def oaep_unpad(padded_bytes, k, label=b""):
         raise ValueError("OAEP integrity check failed")
         
     separator_index = db.find(b"\x01", h_len)
-    return db[separator_index + 1:]
+    return db[separator_index + 1:]     
