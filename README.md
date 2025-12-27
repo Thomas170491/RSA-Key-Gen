@@ -48,6 +48,20 @@ The decryption works because of **Euler's Theorem**. Since $d$ is the modular in
 
 $$C^d \equiv (M^e)^d \equiv M^{ed} \equiv M^{1 + k\phi(n)} \equiv M \cdot (M^{\phi(n)})^k \equiv M \cdot 1^k \equiv M \pmod{n}$$
 
+## 🛡️ Security Considerations
+
+### Why OAEP Padding?
+This implementation uses **RSA-OAEP (Optimal Asymmetric Encryption Padding)** rather than "Textbook RSA." In a production environment, Textbook RSA is vulnerable to several attacks:
+
+1. **Deterministic Encryption:** Without padding, the same plaintext always produces the same ciphertext. This allows attackers to perform frequency analysis or use "rainbow tables" to guess messages. OAEP introduces a random **seed** for every encryption, ensuring probabilistic encryption.
+2. **Malleability:** RSA is mathematically malleable; an attacker could potentially modify the ciphertext in a way that creates a predictable change in the plaintext. OAEP's **Feistel Network** structure ensures that any tampering with the ciphertext results in an invalid decryption.
+3. **Small Exponent Attacks:** If a message is small, an attacker might be able to recover it by taking the $e$-th root. OAEP pads the message to the full length of the modulus, neutralizing this risk.
+
+### Implementation Details
+- **Hash Function:** SHA-256 is used for both the mask generation function (MGF1) and the label hashing.
+- **Entropy:** We utilize Python's `secrets` module (instead of `random`) to ensure cryptographically secure random seeds.
+- **Side-Channel Resistance:** While this is a software implementation, the modular exponentiation uses Python's built-in `pow(m, e, n)`, which is optimized for efficiency.
+
 ## 📦 Installation & Setup
 To clone this project along with its dependencies:
 ```bash
