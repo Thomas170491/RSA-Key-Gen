@@ -1,0 +1,3 @@
+[submodule "lib/math_engine"]
+	path = lib/math_engine
+	url = git@github.com:Thomas170491/Prime-Logic-MillerRabin.git
